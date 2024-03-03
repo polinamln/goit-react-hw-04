@@ -3,21 +3,19 @@ import "./App.css";
 import SearchBar from "./components/SearchBar/SearchBar";
 import { fetchPhotos } from "../src/api";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
-import { toast } from "react-hot-toast";
 import Loader from "../src/components/Loader/Loader";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [photos, setPhotos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-    const inputValue = event.target.elements.searchInput.value;
-
-    setSearchQuery(inputValue);
+  const onSubmit = (newQuery) => {
+    setSearchQuery(newQuery);
+    // setPhotos([]);
     setPage(1);
   };
 
@@ -58,6 +56,7 @@ function App() {
         <LoadMoreBtn onclick={handleClick}></LoadMoreBtn>
       )}
       {isLoading && <Loader></Loader>}
+      <Toaster position="bottom-center" />
     </div>
   );
 }
