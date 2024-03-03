@@ -1,0 +1,12 @@
+.ul {
+  display: flex;
+  list-style-type: none;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.li:hover {
+  transform: scale(1.01);
+  cursor: pointer;
+}
