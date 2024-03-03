@@ -1,8 +1,12 @@
 import css from "./ImageCard.module.css";
 
-export default function ImageCard({ cardPhoto }) {
+export default function ImageCard({ cardPhoto, openModal }) {
   return (
-    <div>
+    <div
+    //   onClick={() => {
+    //     openModal(cardPhoto);
+    //   }}
+    >
       <img className={css.img} src={cardPhoto.urls.small} alt="" />
     </div>
   );

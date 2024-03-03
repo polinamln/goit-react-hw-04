@@ -1,0 +1,27 @@
+.img {
+  height: 500px;
+}
+
+.btn {
+  background-color: #5d878c;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #c5d7d9;
+  margin: 0 auto;
+  display: block;
+}
+
+.btn:hover {
+  background-color: #013a40;
+}
+
+.p {
+  color: #013a40;
+  font-weight: bold;
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 20px;
+}
