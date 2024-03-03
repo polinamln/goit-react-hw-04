@@ -39,7 +39,6 @@ export default function ImageModal({ closeModal, modalIsOpen, modalPhoto }) {
         <button className={css.btn} onClick={closeModal}>
           close
         </button>
-        <div>I am a modal</div>
       </Modal>
     </div>
   );

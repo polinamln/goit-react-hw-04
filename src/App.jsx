@@ -8,6 +8,7 @@ import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import { Toaster } from "react-hot-toast";
 import ImageModal from "./components/ImageModal/ImageModal";
 import Modal from "react-modal";
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 
 function App() {
   Modal.setAppElement("#root");
@@ -19,6 +20,7 @@ function App() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalPhoto, setModalPhoto] = useState(null);
   const [totalPages, setTotalPages] = useState(0);
+  const [error, setError] = useState(false);
 
   function openModal(photo) {
     setModalPhoto(photo);
@@ -45,7 +47,6 @@ function App() {
     }
     async function getPhotosData() {
       try {
-        setPhotos([]);
         setIsLoading(true);
 
         const data = await fetchPhotos(searchQuery, page);
@@ -56,7 +57,7 @@ function App() {
         });
         console.log(data);
       } catch (error) {
-        console.error(error);
+        setError(true);
       } finally {
         setIsLoading(false);
       }
@@ -68,6 +69,7 @@ function App() {
   return (
     <div>
       <SearchBar onSubmit={onSubmit}></SearchBar>
+      {error && <ErrorMessage></ErrorMessage>}
       <ImageGallery openModal={openModal} galleryPhotos={photos}></ImageGallery>
       {photos.length > 0 && !isLoading && page < totalPages && (
         <LoadMoreBtn onClick={handleClick}></LoadMoreBtn>
