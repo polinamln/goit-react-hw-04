@@ -9,6 +9,7 @@ import { Toaster } from "react-hot-toast";
 import ImageModal from "./components/ImageModal/ImageModal";
 import Modal from "react-modal";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
+import { toast } from "react-hot-toast";
 
 function App() {
   Modal.setAppElement("#root");
@@ -48,13 +49,18 @@ function App() {
     async function getPhotosData() {
       try {
         setIsLoading(true);
+        setError(false);
 
         const data = await fetchPhotos(searchQuery, page);
-        // setPhotos(data.results);
         setTotalPages(data.total_pages);
         setPhotos((prevPhotos) => {
           return [...prevPhotos, ...data.results];
         });
+
+        if (data.results.length === 0) {
+          setError(true);
+        }
+
         console.log(data);
       } catch (error) {
         setError(true);
