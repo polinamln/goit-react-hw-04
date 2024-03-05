@@ -77,17 +77,17 @@ function App() {
 
   const galleryRef = useRef();
 
-  const scrollTo = () => {
-    const galleryScroll = galleryRef.current.getBoundingClientRect();
+  // const scrollTo = () => {
+  //   const galleryScroll = galleryRef.current.getBoundingClientRect();
 
-    console.log(galleryScroll);
+  //   console.log(galleryScroll);
 
-    window.scrollTo({
-      top: galleryScroll.top,
-      behavior: "smooth",
-      block: "start",
-    });
-  };
+  //   window.scrollTo({
+  //     top: galleryScroll.top,
+  //     behavior: "smooth",
+  //     block: "start",
+  //   });
+  // };
 
   return (
     <div>
