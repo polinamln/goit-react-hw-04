@@ -10,6 +10,7 @@ import ImageModal from "./components/ImageModal/ImageModal";
 import Modal from "react-modal";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import { toast } from "react-hot-toast";
+import { useRef } from "react";
 
 function App() {
   Modal.setAppElement("#root");
@@ -57,6 +58,8 @@ function App() {
           return [...prevPhotos, ...data.results];
         });
 
+        scrollTo();
+
         if (data.results.length === 0) {
           setError(true);
         }
@@ -72,11 +75,29 @@ function App() {
     getPhotosData();
   }, [searchQuery, page]);
 
+  const galleryRef = useRef();
+
+  const scrollTo = () => {
+    const galleryScroll = galleryRef.current.getBoundingClientRect();
+
+    console.log(galleryScroll);
+
+    window.scrollTo({
+      top: galleryScroll.top,
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <div>
       <SearchBar onSubmit={onSubmit}></SearchBar>
       {error && <ErrorMessage></ErrorMessage>}
-      <ImageGallery openModal={openModal} galleryPhotos={photos}></ImageGallery>
+      <ImageGallery
+        ref={galleryRef}
+        openModal={openModal}
+        galleryPhotos={photos}
+      ></ImageGallery>
       {photos.length > 0 && !isLoading && page < totalPages && (
         <LoadMoreBtn onClick={handleClick}></LoadMoreBtn>
       )}

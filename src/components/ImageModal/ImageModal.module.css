@@ -1,5 +1,7 @@
 .img {
   height: 500px;
+  border: 2px solid #c5d7d9;
+  padding: 6px;
 }
 
 .btn {

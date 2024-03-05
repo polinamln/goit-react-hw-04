@@ -1,9 +1,10 @@
+import { forwardRef } from "react";
 import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
 
-export default function ImageGallery({ galleryPhotos, openModal }) {
+const ImageGallery = forwardRef(({ galleryPhotos, openModal }, ref) => {
   return (
-    <ul className={css.ul}>
+    <ul ref={ref} className={css.ul}>
       {galleryPhotos.map((photo) => (
         <li
           onClick={() => {
@@ -17,4 +18,8 @@ export default function ImageGallery({ galleryPhotos, openModal }) {
       ))}
     </ul>
   );
-}
+});
+
+ImageGallery.displayName = "ImageGallery";
+
+export default ImageGallery;
